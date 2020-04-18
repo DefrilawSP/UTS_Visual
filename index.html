@@ -1,0 +1,40 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body style="background-color:#FFEA18">
+    <div class="text-center">
+        <a class="font-weight-bold" style="font-size: 30px;">Aplikasi Kasir<br>Cemilan Nikmat</a>
+
+        <div class="container">
+            <div class="row p-5">
+                <div class="col">
+                    <a href="kasir.html"><img src="img/kasir.png" width="150px"></a>
+                    <h4>Aplikasi<br>Kasir</h4>
+                </div>
+                <div class="col">
+                    <a href="produk.html"><img src="img/snack.png" width="150px"></a>
+                    <h4>Katalog<br>Produk</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="main"></div>
+</body>
+
+<script>
+    const electron = require("electron");
+    const {
+        ipcRenderer
+    } = electron;
+    ipcRenderer.send("appointment:request:main");
+
+    ipcRenderer.on("appointment:request:main", (event, appointments) => {
+        const listDiv = document.getElementById("main");
+    });
+</script>
+
+</html>

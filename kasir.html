@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+
+<head>
+    <link rel="stylesheet" href="css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body>
+    <div id="kasir"></div>
+    <h2 align="center">Menu Kasir</h2>
+    <h2 align="center">Pembelian Produk</h2>
+    <form id="form" name="formwarung">
+        <table border="1" align="center" style="width:589">
+            <tr bgcolor="#77FF33">
+                <th style="width:27" scope="col">No</th>
+                <th style="width:181" scope="col">Daftar Menu</th>
+                <th style="width:185" scope="col">Harga</th>
+                <th style="width:166" scope="col">Order</th>
+            </tr>
+            <tr>
+                <td style="text-align:center"><strong>1.</strong></td>
+                <td><strong>Keripik Kentang Original</strong></td>
+                <td><strong>
+                        <input for="originalaa" type="text" name="original" value="10000" size="20" disabled="disabled" />
+                    </strong></td>
+                <td><input name="originalaa" type="text" onkeyup="warung()" value="0" size="20" /></td>
+            </tr>
+            <tr style="background-color:#AAFF80">
+                <td style="text-align:center"><strong>2.</strong></td>
+                <td><strong>Keripik Kentang Balado</strong></td>
+                <td><strong>
+                        <input for="baladoaa" type="text" name="balado" value="12000" size="20" disabled="disabled" />
+                    </strong></td>
+                <td><input name="baladoaa" type="text" onkeyup="warung()" value="0" size="20" /></td>
+            </tr>
+            <tr>
+                <td style="text-align:center"><strong>3.</strong></td>
+                <td><strong>Keripik Kentang Keju</strong></td>
+                <td><strong>
+                        <input for="kejuaa" type="text" name="keju" value="12000" size="20" disabled="disabled" />
+                    </strong></td>
+                <td><input name="kejuaa" type="text" onkeyup="warung()" value="0" size="20" /></td>
+            </tr>
+            <tr style="background-color:#AAFF80">
+                <td style="text-align:center"><strong>4.</strong></td>
+                <td><strong>Makaroni Pedas</strong></td>
+                <td><strong>
+                        <input for="mpedasaa" type="text" name="mpedas" value="10500" size="20" disabled="disabled" />
+                    </strong></td>
+                <td><input name="mpedasaa" type="text" onkeyup="warung()" value="0" size="20" /></td>
+            </tr>
+            <tr>
+                <td style="text-align:center"><strong>5.</strong></td>
+                <td><strong>Makaroni Keju</strong></td>
+                <td><strong>
+                        <input for="mkejuaa" type="text" name="mkeju" value="8500" size="20" disabled="disabled" />
+                    </strong></td>
+                <td><input name="mkejuaa" type="text" onkeyup="warung()" value="0" size="20" /></td>
+            </tr>
+            <tr style="background-color:#FFEA18">
+                <td colspan="3" style="text-align:center"><strong>Jumlah Total</strong></td>
+                <td><input for="TotalBayar" name="TotalBayar" type="text" style="text-align:center" disabled="disabled" value="-"
+                        size="20" /></td>
+            </tr>
+            <tr style="background-color:#FFEA18">
+                <td colspan="3" style="text-align:center"><strong>Jumlah Bayar</strong></td>
+                <td><input for="Pembayaran" name="Pembayaran" type="text" onkeyup="warung()" style="text-align:center" value="-"
+                        size="20" /></td>
+            </tr>
+            <tr style="background-color:#FFEA18">
+                <td colspan="3" style="text-align:center"><strong>Kembali</strong></td>
+                <td><input for="Kembali" name="Kembali" type="text" style="text-align:center" disabled="disabled" value="-"
+                        size="20" /></td>
+            </tr>
+        </table>
+    </form>
+    <div class="row p-5" style="float: right;">
+        <input class="btn btn-primary" type="button" value="Batal" onclick="awal()" />
+        <div class="px-3">
+        <a class="btn btn-primary" href="index.html" role="button">Kembali</a>
+        </div>
+    </div>
+    <script>
+        const electron = require("electron");
+        const {ipcRenderer} = electron;
+        ipcRenderer.send("appointment:request:kasir");
+    
+        ipcRenderer.on("appointment:response:kasir");
+        const listDiv = document.getElementById("kasir");
+    
+        function warung(){
+        var catat = document.formwarung;
+        var hargaoriginal = parseInt(catat.original.value) * parseInt(catat.originalaa.value);
+        var hargabalado = parseInt(catat.balado.value) * parseInt(catat.baladoaa.value);
+        var hargakeju= parseInt(catat.keju.value) * parseInt(catat.kejuaa.value);
+        var hargampedas = parseInt(catat.mpedas.value) * parseInt(catat.mpedasaa.value);
+        var hargamkeju= parseInt(catat.mkeju.value) * parseInt(catat.mkejuaa.value);
+        var hargasemua = hargaoriginal + hargabalado + hargakeju + hargampedas + hargamkeju;
+        catat.TotalBayar.value = hargasemua;
+        var kembalian = parseInt(catat.Pembayaran.value) - parseInt(catat.TotalBayar.value);
+        catat.Kembali.value = kembalian;
+        }
+
+        function awal(){
+        document.formwarung.reset();
+        }
+    </script>
+</body>
+
+</html>

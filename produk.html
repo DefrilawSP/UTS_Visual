@@ -1,0 +1,66 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="text-center">
+            <a class="font-weight-bold" style="font-size: 30px;">Katalog Produk</a>
+    
+            <div class="container">
+                <div class="row p-2">
+                    <div class="col">
+                        <div>
+                        <img src="img/kentang.jpg" width="200px" height="200px">
+                        </div>
+                        <h5>Keripik Kentang Original</h5>
+                    </div>
+                    <div class="col">
+                        <div>
+                        <img src="img/kentangbalado.png" width="200px" height="200px">
+                        </div>
+                        <h5>Keripik Kentang Balado</h5>
+                    </div>
+                    <div class="col">
+                        <div>
+                        <img src="img/kentangkeju.jpg" width="200px" height="200px">
+                        </div>
+                        <h5>Keripik Kentang Keju</h5>
+                    </div>
+                </div>
+                <div class="row p-2">
+                    <div class="col">
+                        <div>
+                        <img src="img/makaronipedas.jpeg"width="200px" height="200px">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div>
+                        <img src="img/makaronikeju.jpg" width="200px" height="200px">
+                        </div>
+                    </div>
+                </div>
+                <div class="row p-2">
+                    <div class="col">
+                        <h5>Makaroni Pedas</h5>
+                    </div>
+                    <div class="col">
+                        <h5>Makaroni Keju</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="pr-5" style="float: right;">
+        <a class="btn btn-primary" href="index.html" role="button">Kembali</a>
+        </div>
+        <script>
+            const electron = require("electron");
+            const {
+                ipcRenderer
+            } = electron;
+            ipcRenderer.send("appointment:request:produk");
+    
+            ipcRenderer.on("appointment:response:produk");
+        </script>
+    </body>
+</html>    
