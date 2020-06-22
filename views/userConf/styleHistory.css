@@ -1,0 +1,3 @@
+#tableHistory thead th {text-align: center; background-color: rgba(0,0,255,0.1);border-radius: 0px; transition: 500ms;}
+#tableHistory thead th:hover {background-color: rgba(0,0,255,0.3); transition: 500ms;}
+#tableHistory tbody tr td {text-align: center;}

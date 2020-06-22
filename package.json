@@ -1,0 +1,17 @@
+{
+  "name": "electron-kasir",
+  "version": "0.4.11",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "",
+  "license": "",
+  "private": false,
+  "devDependencies": {
+    "electron": "^6.0.11"
+  },
+  "dependencies": {
+    "jquery": "^3.4.1"
+  }
+}
